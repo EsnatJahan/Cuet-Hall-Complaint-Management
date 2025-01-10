@@ -1,14 +1,26 @@
 //import { useState } from 'react'
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css'
 import Header from './Components/Header'
+import Login from './Components/Login'
+import AdminDashboard from './Components/AdminDashboard'
+
 
 function App() {
   //const [count, setCount] = useState(0)
 
   return (
-    <Header/>
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Navigate to = "/admin-dashboard" />}></Route>
+        <Route path="/login" element={<Login />} ></Route>
+        <Route path="admin-dashboard" element={<AdminDashboard />} ></Route>
+
+      </Routes>
+    </BrowserRouter>
+    //<Header/>
     // <>
     //   <div>
     //     <a href="https://vite.dev" target="_blank">
