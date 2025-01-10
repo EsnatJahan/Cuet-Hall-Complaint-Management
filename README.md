@@ -1,1 +1,1 @@
-# Cuet-Hall-Complaint-Mangement
+# Cuet-Hall-Complaint-Management
