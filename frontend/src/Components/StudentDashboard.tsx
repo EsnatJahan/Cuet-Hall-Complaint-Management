@@ -6,7 +6,7 @@ import Profile from "./Profile.tsx";
 import { Outlet } from "react-router-dom";
 import "../Styles/AdminDashboard.css"; 
 
-function AdminDashboard(){
+function StudentDashboard(){
     return(
 
         <div className="dashboard-container">
@@ -35,4 +35,4 @@ function AdminDashboard(){
     );
 }
 
-export default AdminDashboard
+export default StudentDashboard

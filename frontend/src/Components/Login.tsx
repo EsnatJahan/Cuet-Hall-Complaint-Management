@@ -20,7 +20,7 @@ const LoginSignUP = () => {
                 console.log("login successful") 
                 console.log(response)
                 alert('Successful Log In');
-                navigate("/admin-dashboard")
+                navigate("/student-dashboard")
             }
      
        

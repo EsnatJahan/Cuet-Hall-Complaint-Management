@@ -8,10 +8,11 @@ import Login from './Components/Login'
 
 import Home from './Components/Home';
 
-import AdminDashboard from './Components/AdminDashboard'
+// import AdminDashboard from './Components/StudentDashboard'
 import AddComplaint from './Components/AddComplaint';
 import PreviousComplaints from './Components/PreviousComplaints';
 import Profile from './Components/Profile';
+import StudentDashboard from './Components/StudentDashboard';
 
 
 function App() {
@@ -23,7 +24,7 @@ function App() {
         <Route path='/' element={<Navigate to = "/home" />}></Route>
         <Route path="/login" element={<Login />} ></Route>
         <Route path="/home" element={<Home />} ></Route>
-        <Route path="/admin-dashboard" element={<AdminDashboard />} >
+        <Route path="/student-dashboard" element={<StudentDashboard />} >
           <Route index element={<Profile />} />
           <Route path="add-complaint" element={<AddComplaint />} />
           <Route path="previous-complaints" element={<PreviousComplaints />} />
