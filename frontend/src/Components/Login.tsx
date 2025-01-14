@@ -19,11 +19,13 @@ const LoginSignUP = () => {
                     {email, password})
                 console.log("login successful") 
                 console.log(response)
+                alert('Successful Log In');
                 navigate("/admin-dashboard")
             }
      
        
         }catch(error) {
+            alert('Log In Failed');
             console.log("login failed", error) 
         }
     }

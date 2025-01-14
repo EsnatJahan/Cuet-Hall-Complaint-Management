@@ -1,5 +1,3 @@
-//mongodb+srv://esnat:<db_password>@cluster0.2pzar.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-
 import express from 'express'
 import authRouter from './routes/auth.js'
 //import itemModel from './models/item.js'
