@@ -9,9 +9,9 @@ function Home () {
    
     <div>
       {/* Header Section */}
-      <header>
+      <header className='head'>
         <div className="container header-content">
-          <nav>
+          <nav className='navbar'>
             <ul>
               <li>
                 <a href="#home">Home</a>

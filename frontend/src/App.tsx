@@ -25,7 +25,7 @@ function App() {
         <Route path="/login" element={<Login />} ></Route>
         <Route path="/home" element={<Home />} ></Route>
         <Route path="/student-dashboard" element={<StudentDashboard />} >
-          <Route index element={<Profile />} />
+          <Route index element={<AddComplaint />} />
           <Route path="add-complaint" element={<AddComplaint />} />
           <Route path="previous-complaints" element={<PreviousComplaints />} />
           <Route path="profile" element={<Profile />} />

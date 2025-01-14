@@ -30,12 +30,13 @@ const LoginSignUP = () => {
         }
     }
   return (
+    <div className="container-bg">
     <div className='container'>
         <div className="header">
-            <div className="text">Tapshi Rabeya Hall</div>
+            <div className="text">Taposhi Rabeya Hall</div>
             <div className="underline"></div>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="loginform">
         <div className="inputs">
             {action==="Login"?<div></div>:
             <div className="input">
@@ -73,6 +74,7 @@ const LoginSignUP = () => {
         </div>
         </form>
       
+    </div>
     </div>
   )
 }
