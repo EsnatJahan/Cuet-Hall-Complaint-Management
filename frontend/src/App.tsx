@@ -13,6 +13,9 @@ import AddComplaint from './Components/AddComplaint';
 import PreviousComplaints from './Components/PreviousComplaints';
 import Profile from './Components/Profile';
 import StudentDashboard from './Components/StudentDashboard';
+import ComplaintManager from './Components/ComplaintManager';
+import StudentComplaints from './Components/SeeComplaintList';
+import ApprovedComplaints from './Components/ApprovedComplaint';
 import { SnackbarProvider } from 'notistack';
 
 
@@ -27,12 +30,22 @@ function App() {
         <Route path='/' element={<Navigate to = "/home" />}></Route>
         <Route path="/login" element={<Login />} ></Route>
         <Route path="/home" element={<Home />} ></Route>
+        {/* <Route path="/manager-dashboard" element={<ComplaintManager />} >  */}
         <Route path="/student-dashboard" element={<StudentDashboard />} >
           <Route index element={<AddComplaint />} />
           <Route path="add-complaint" element={<AddComplaint />} />
           <Route path="previous-complaints" element={<PreviousComplaints />} />
           <Route path="profile" element={<Profile />} />
+         
         </Route>
+        <Route path="/manager-dashboard" element={<ComplaintManager />} >
+          <Route index element={<StudentComplaints  />} />
+          <Route path="student-complaint" element={<StudentComplaints />} />
+          <Route path="approved-complaints" element={<ApprovedComplaints />} />
+          <Route path="profile" element={<Profile />} />
+         
+        </Route>
+        
 
       </Routes>
     </BrowserRouter>
