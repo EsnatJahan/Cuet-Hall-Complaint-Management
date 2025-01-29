@@ -19,7 +19,7 @@ function App() {
   //const [count, setCount] = useState(0)
 
   return (
-    <BrowserRouter> 
+    <BrowserRouter>   
       <Routes>
         <Route path='/' element={<Navigate to = "/home" />}></Route>
         <Route path="/login" element={<Login />} ></Route>
