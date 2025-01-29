@@ -12,6 +12,10 @@ function AddComplaint() {
         </label>
         <br />
         <label>
+          Complaint Manager:
+          <input />
+        </label>
+        <label>
           Description:
           <textarea placeholder="Enter complaint description" rows="4"></textarea>
         </label>

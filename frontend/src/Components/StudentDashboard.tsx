@@ -4,7 +4,7 @@ import AddComplaint from "./AddComplaint.tsx";
 import PreviousComplaints from "./PreviousComplaints.tsx";
 import Profile from "./Profile.tsx";
 import { Outlet } from "react-router-dom";
-import "../Styles/AdminDashboard.css"; 
+import "../Styles/StudentDashboard.css"; 
 
 function StudentDashboard(){
     return(
