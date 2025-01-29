@@ -13,12 +13,15 @@ import AddComplaint from './Components/AddComplaint';
 import PreviousComplaints from './Components/PreviousComplaints';
 import Profile from './Components/Profile';
 import StudentDashboard from './Components/StudentDashboard';
+import { SnackbarProvider } from 'notistack';
 
 
 function App() {
   //const [count, setCount] = useState(0)
 
   return (
+    <SnackbarProvider autoHideDuration={2000}>
+  
     <BrowserRouter>   
       <Routes>
         <Route path='/' element={<Navigate to = "/home" />}></Route>
@@ -33,7 +36,7 @@ function App() {
 
       </Routes>
     </BrowserRouter>
-   // <Home/>
+   </SnackbarProvider>
     
   )
 }

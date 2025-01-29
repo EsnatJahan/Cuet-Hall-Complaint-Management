@@ -3,10 +3,12 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../Styles/Login.css'
 import axios from "axios";
+import { enqueueSnackbar } from "notistack";
 
 
 const LoginSignUP = () => {
     const [action, setAction] = useState("Login");
+    const [name, setName] = useState("")
     const [email,setEmail] = useState('')
     const [ password , setPassword] = useState('')
     const navigate = useNavigate()
@@ -15,17 +17,23 @@ const LoginSignUP = () => {
         e.preventDefault()
         try{
             if (action == "Login") {
-                const response = await axios.post("http://localhost:3000/api/auth/Login",
+                const response = await axios.post("http://localhost:3000/api/auth/Login  ",
                     {email, password})
                 console.log("login successful") 
                 console.log(response)
-                alert('Successful Log In');
+                enqueueSnackbar("Login successful", {variant: "success"})
                 navigate("/student-dashboard")
+            } else if (action == "Sign UP") {
+                const res = await axios.post("http://localhost:3000/api/auth/Signup", {
+                    name,
+                    email,
+                    password
+                })
+                enqueueSnackbar("Signup successful")
             }
      
        
         }catch(error) {
-            alert('Log In Failed');
             console.log("login failed", error) 
         }
     }
@@ -38,10 +46,13 @@ const LoginSignUP = () => {
         </div>
         <form onSubmit={handleSubmit} className="loginform">
         <div className="inputs">
-            {action==="Login"?<div></div>:
+            {action!=="Login" &&
             <div className="input">
                 {/* <img src={user_icon} alt=""  /> */}
-                <input type="text" placeholder="Name"/>
+                <input 
+                    type="text" placeholder="Name"
+                    onChange={(e) => setName(e.target.value)}
+                />
             </div>}
             <div className="input">
                 {/* <img src={email_icon} alt="" className="" /> */}
