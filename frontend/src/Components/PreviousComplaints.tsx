@@ -1,4 +1,5 @@
 import React from "react";
+import '../Styles/PreviousComplaint.css'
 
 function PreviousComplaints() {
   const complaints = [
@@ -10,13 +11,35 @@ function PreviousComplaints() {
   return (
     <div>
       <h1>Previous Complaints</h1>
-      <ul>
+      {/* <ul>
         {complaints.map((complaint) => (
           <li key={complaint.id}>
             <strong>{complaint.title}</strong> - {complaint.status}
           </li>
         ))}
-      </ul>
+      </ul> */}
+      <table >
+        <tr>
+          
+            <th>Complaint</th>
+            <th>Status</th>
+        </tr>
+        <tr>
+            <td>Broken Door</td>
+    
+            <td>Resolved</td>
+        </tr>
+        <tr>
+            <td>Leaking Tap</td>
+            <td>Pending</td>
+           
+        </tr>
+        <tr>
+            <td>Power Outage</td>
+            <td>In Progress</td>
+           
+        </tr>
+    </table>
     </div>
   );
 };

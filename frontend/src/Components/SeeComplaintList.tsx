@@ -4,11 +4,11 @@ import "../Styles/SeeComplaint.css";
 
 function StudentComplaints() {
   return (
-    <div style={{ width: "80%", height: "100vh" }}>
+    <div style={{ width: "80%", height: "100vh"}}>
       <h1> Complaint Details</h1>
       <div  style={{padding:"20px"}}>
       <form style={{width:"100%"}}> 
-        <table>
+        <table className="tbmanager" style={{border:"none"}}>
           <tbody>
             <tr>
               <td style={{ }}>

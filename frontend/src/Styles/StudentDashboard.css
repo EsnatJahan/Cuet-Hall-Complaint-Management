@@ -49,4 +49,82 @@
     background-color: #ecf0f1;
     overflow-y: auto;
   }
+
+  /* Ensure the dashboard container takes full screen */
+.dashboard-container {
+  display: flex;
+  flex-direction: column; /* Navbar should be at the top */
+  height: 100vh;
+}
+
+/* Navbar Styling */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4a5568;
+  color: white;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  position: fixed; /* Fix navbar at the top */
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Ensure it stays on top */
+}
+
+/* Adjust the main content area to avoid overlapping with the navbar */
+.dashboard-content {
+  margin-top: 60px; /* Push content below navbar */
+  padding: 20px;
+  flex: 1;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: #2d3748;
+  color: white;
+  height: 100vh;
+  position: fixed;
+  top: 60px; /* Adjusted to start below the navbar */
+  left: 0;
+  padding-top: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 15px;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+/* Logout button styling */
+.logout-btn {
+  background-color: #e53e3e;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.logout-btn:hover {
+  background-color: #c53030;
+}
+
+/* Main Content */
+.dashboard-content {
+  margin-left: 250px; /* Push content next to sidebar */
+  padding: 20px;
+}
+
   

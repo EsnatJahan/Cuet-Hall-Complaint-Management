@@ -62,4 +62,8 @@ body {
   button:hover {
     background-color: rgb(140, 115, 96);
   }
+
+  .tbmanager{
+    border: none;
+  }
   

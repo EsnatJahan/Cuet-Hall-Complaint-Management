@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link, Navigate, useNavigate } from "react-router-dom";
 import AddComplaint from "./AddComplaint.tsx";
 import PreviousComplaints from "./PreviousComplaints.tsx";
@@ -6,37 +6,60 @@ import Profile from "./Profile.tsx";
 import { Outlet } from "react-router-dom";
 import "../Styles/StudentDashboard.css"; 
 
-function StudentDashboard(){
-  const navigate = useNavigate()
-    return(
+function StudentDashboard() {
+  const navigate = useNavigate();
+  const [userName, setUserName] = useState("");
 
-        <div className="dashboard-container">
-          {/* Sidebar */}
-          <aside className="sidebar h-full">
-            <h2>Dashboard</h2>
-            <ul>
-              <li>
-                <Link to="add-complaint">Add Complaints</Link>
-              </li>
-              <li>
-                <Link to="previous-complaints">Show Previous Complaints</Link>
-              </li>
-              <li>
-                <Link to="profile">Profile</Link>
-              </li>
-              <li>
-                <div className="mt-auto mb-4 mx-auto " onClick={() => navigate("/home")}>Logout</div>
-              </li>
-            </ul>
-          </aside>
-  
-          {/* Middle Content */}
-          <main className="dashboard-content">
-            <Outlet />
-          </main>
+  // Retrieve user data from localStorage or API
+  useEffect(() => {
+    const storedUser = localStorage.getItem("userName");
+    if (storedUser) {
+      setUserName(storedUser);
+    } else {
+      setUserName("Student"); 
+    }
+  }, []);
+
+  return (
+    <div className="dashboard-container">
+      {/* Navbar */}
+      <nav className="navbar">
+        <h2 className="navbar-title">Student Dashboard</h2>
+        <div className="user-info">
+          <span style={{paddingRight:"15px"}}>  {userName}!</span>
+          <button className="logout-btn" onClick={() => {
+            localStorage.removeItem("userName"); // Clear stored user info
+            navigate("/home");
+            
+          }}>
+            Logout
+          </button>
         </div>
-     
-    );
+      </nav>
+
+      <div className="content-wrapper">
+        {/* Sidebar */}
+        <aside className="sidebar">
+          <ul>
+            <li>
+              <Link to="add-complaint">Add Complaints</Link>
+            </li>
+            <li>
+              <Link to="previous-complaints">Show Previous Complaints</Link>
+            </li>
+            <li>
+              <Link to="profile">Profile</Link>
+            </li>
+          </ul>
+        </aside>
+
+        {/* Middle Content */}
+        <main className="dashboard-content">
+          <Outlet />
+        </main>
+      </div>
+    </div>
+  );
 }
 
-export default StudentDashboard
+export default StudentDashboard;

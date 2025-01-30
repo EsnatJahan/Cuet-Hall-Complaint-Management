@@ -20,7 +20,9 @@ const LoginSignUP = () => {
                 const response = await axios.post("http://localhost:3000/api/auth/Login  ",
                     {email, password})
                 console.log("login successful") 
+                console.log("API Responsing:", response.data)
                 console.log(response)
+                localStorage.setItem("userName", response.data.user._name);
                 enqueueSnackbar("Login successful", {variant: "success"})
                 navigate("/student-dashboard")
             } else if (action == "Sign UP") {
@@ -57,7 +59,7 @@ const LoginSignUP = () => {
             <div className="input">
                 {/* <img src={email_icon} alt="" className="" /> */}
                 <input 
-                    type="email" placeholder='Email ID'
+                    type="email" placeholder='Email'
                     onChange={(e) => setEmail(e.target.value)}
                 />
             </div>
