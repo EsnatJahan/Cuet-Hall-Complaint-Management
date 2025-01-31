@@ -20,8 +20,6 @@ const LoginSignUP = () => {
                 const response = await axios.post("http://localhost:3000/api/auth/Login  ",
                     {email, password})
                 console.log("login successful") 
-                console.log("API Responsing:", response.data)
-                console.log(response)
                 localStorage.setItem("userName", response.data.user._name);
                 localStorage.setItem("userId", response.data.user._id);
                 localStorage.setItem("userRole", response.data.user._role);

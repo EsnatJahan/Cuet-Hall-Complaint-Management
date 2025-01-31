@@ -35,10 +35,10 @@ function StudentComplaints() {
 
               <div className="grid grid-cols-[30%_60%] gap-8">
                 <div className="space-y-6 p-6 min-h-[250px]">
-                  <p className="text-xl space-y-3"><span className="font-bold">Name:</span> {complaint.name}</p>
+                  <p className="text-xl space-y-3"><span className="font-bold">Name:</span> {complaint.userName}</p>
                   <p className="text-xl space-y-3"><span className="font-bold">ID:</span> {complaint.id}</p>
                   <div className="mt-4">
-                    <button className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700">
+                    <button className="bg-green-600 text-white text-2xl px-12 py-6 rounded hover:bg-green-700">
                       Approve
                     </button>
                   </div>
