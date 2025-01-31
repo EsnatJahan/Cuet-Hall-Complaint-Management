@@ -26,7 +26,12 @@ const LoginSignUP = () => {
                 localStorage.setItem("userId", response.data.user._id);
                 localStorage.setItem("userRole", response.data.user._role);
                 enqueueSnackbar("Login successful", {variant: "success"})
-                navigate("/student-dashboard")
+                if(response.data.user._role === "student") {
+                    navigate("/student-dashboard")
+                }else {
+                    navigate("/manager-dashboard")
+                }
+                
             } else if (action == "Sign UP") {
                 const res = await axios.post("http://localhost:3000/api/auth/Signup", {
                     name,
