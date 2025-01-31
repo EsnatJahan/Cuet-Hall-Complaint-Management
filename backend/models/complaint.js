@@ -3,6 +3,7 @@ import mongoose from "mongoose";
 const complaintScheme = new mongoose.Schema({
     //complainer: {type: [mongoose.Schema.Types.ObjectId], ref:"User", requried: true},
     userName: {type: String, required: true},
+    id:{type: Number, required: true},
     title: {type: String, required: true},
     // manager: {type: [mongoose.Schema.Types.ObjectId], ref:"User", requried: true},
     manager: {type: String, required: true},

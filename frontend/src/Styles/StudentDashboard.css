@@ -6,7 +6,7 @@
 .dashboard-container {
     display: flex;
     height: 100vh;
-    width: 100vw;
+    width: 80vw;
     margin: 0 20px;
   }
   
@@ -20,7 +20,8 @@
   }
   
   .sidebar h2 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
+    
     margin-bottom: 20px;
   }
   
@@ -70,6 +71,7 @@
   position: fixed; /* Fix navbar at the top */
   top: 0;
   left: 0;
+  height: 15%;
   width: 100%;
   z-index: 1000; /* Ensure it stays on top */
 }
@@ -123,7 +125,8 @@
 
 /* Main Content */
 .dashboard-content {
-  margin-left: 250px; /* Push content next to sidebar */
+ 
+  margin-left: 20%; 
   padding: 20px;
 }
 

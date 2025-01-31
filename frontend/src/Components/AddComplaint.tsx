@@ -8,6 +8,7 @@ function AddComplaint() {
   const [selectedManager, setSelectedManager] = useState("");
   const [description, setDescription] = useState("");
   const [userName, setUserName] = useState("");
+  const [userId, setUserId] = useState("");
   
   const navigate = useNavigate();
 
@@ -16,11 +17,20 @@ function AddComplaint() {
     if (storedUser) {
       setUserName(storedUser);
     } else {
-      setUserName(""); // Empty string to indicate missing user
+      setUserName("");
     }
   }, []);
 
-  const managers = ["Provost", "Hall Manager", "Dining Manager"];
+  useEffect(() => {
+    const storedUser = localStorage.getItem("userId");
+    if (storedUser) {
+      setUserId(storedUser);
+    } else {
+      setUserId(""); 
+    }
+  }, []);
+
+  const managers = ["Provost", "Assosiate Provost", "Hall Manager", "Dining Manager" ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -36,15 +46,14 @@ function AddComplaint() {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/api/Complaint", {
+      const response = await axios.post("http://localhost:3000/api/auth/Complaint", {
         userName,
+        userId,
         title,
         manager: selectedManager, // Ensure correct key
         description,
         status: "pending"
       });
-
-      console.log("Submitted Complaint:", { userName, title, selectedManager, description , status });
 
       if (response.status === 200) {
         enqueueSnackbar("Complaint submitted successfully!", { variant: "success" });
@@ -60,7 +69,7 @@ function AddComplaint() {
   };
 
   return (
-    <div style={{ width: "80%", height: "100vh" }}>
+    <div style={{ width: "100%", height: "89vh" }}>
       <h1>Add Complaint</h1>
       <form onSubmit={handleSubmit}>
         <label>

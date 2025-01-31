@@ -23,6 +23,8 @@ const LoginSignUP = () => {
                 console.log("API Responsing:", response.data)
                 console.log(response)
                 localStorage.setItem("userName", response.data.user._name);
+                localStorage.setItem("userId", response.data.user._id);
+                localStorage.setItem("userRole", response.data.user._role);
                 enqueueSnackbar("Login successful", {variant: "success"})
                 navigate("/student-dashboard")
             } else if (action == "Sign UP") {
