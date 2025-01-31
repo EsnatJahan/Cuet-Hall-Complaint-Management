@@ -42,7 +42,9 @@ router.post('/Complaint' , async(req,res) => {
         const {userName,userId,title,manager,description,status} = req.body;
         if (!req.body.userName || !req.body.title || !req.body.manager || !req.body.description) {
             return res.status(400).json({ success: false, error: "All fields are required" });
-          }
+        }
+        const complaints = await Complaint.find()
+        let c_id = complaints.length > 0 ? Math.max(...complaints.map(c => c.c_id)) + 1 : 1;
         console.log("All field found")
         const newComplaint = new Complaint ({
             userName,
@@ -51,6 +53,7 @@ router.post('/Complaint' , async(req,res) => {
             description,
             status,
             id: userId,
+            c_id
         });
         await newComplaint.save();
         res.status(200).json({ message: "Complaint submitted successfully" });
@@ -82,14 +85,13 @@ router.get("/PrevComplaints/:id", async (req, res) => {
 router.get("/SeeComplaints/:role", async (req, res) => {
     try {
       const role = req.params.role;
-      const complaints = await Complaint.find({manager:role});
+      const complaints = await Complaint.find({manager:role, status: 'pending' });
       console.log(role)
       if (!complaints.length) {
         console.log("No complaints")
         return res.status(404).json({ success: false, message: "No complaints found for this user." });
         
       }
-      console.log("Complaints found:", complaints);
       res.status(200).json(complaints);
     } catch (error) {
       console.error("Error fetching complaints:", error);
@@ -97,5 +99,35 @@ router.get("/SeeComplaints/:role", async (req, res) => {
     }
 });
 
+router.post('/ApproveComplaint', async (req, res) => {
+  try {
+      const { c_id , actionPlan } = req.body;
+ 
+      const updatedComplaint = await Complaint.findOneAndUpdate(
+        { c_id },  
+        { message: actionPlan, status: "inprogress" },
+        { new: true } 
+      );
+      res.status(200).json({ message: "Complaint submitted successfully" });
+  } catch (error) {
+      res.status(500).json({ message: "Internal server error", error: error.message });
+      console.log(error)
+  }
+});
 
+router.get("/Approved/:role", async (req, res) => {
+  try {
+    const role = req.params.role;
+    const complaints = await Complaint.find({manager:role, status: 'inprogress' });
+    if (!complaints.length) {
+      console.log("No complaints")
+      return res.status(404).json({ success: false, message: "No complaints found for this user." });
+      
+    }
+    res.status(200).json(complaints);
+  } catch (error) {
+    console.error("Error fetching complaints:", error);
+    res.status(500).json({ success: false, error: "Server error" });
+  }
+});
 export default router

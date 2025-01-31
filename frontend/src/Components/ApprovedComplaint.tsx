@@ -1,117 +1,77 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
-import "../Styles/SeeComplaint.css"; 
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../Styles/SeeComplaint.css";
 
-function ApprovedComplaints() {
+function StudentComplaints() {
+  const [complaints, setComplaints] = useState([]);
+  const [selectedComplaint, setSelectedComplaint] = useState(null);
+  const [actionPlan, setActionPlan] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    const fetchComplaints = async () => {
+      try {
+        const role = localStorage.getItem("userRole"); 
+        const response = await axios.get(`http://localhost:3000/api/auth/Approved/${role}`);
+        setComplaints(response.data);
+      } catch (error) {
+        console.error("Error fetching complaints:", error);
+      }
+    };
+    fetchComplaints();
+  }, []);
+
+  const handleApproveClick = (complaint) => {
+    setSelectedComplaint(complaint);
+    setShowModal(true);
+  };
+
   return (
-    <div style={{ width: "80%", height: "100vh" }}>
-      <h1> Complaint Details</h1>
-      <div  style={{padding:"20px"}}>
-      <form style={{width:"100%"}}> 
-        <table>
-          <tbody>
-            <tr>
-              <td style={{ }}>
-                <label>Student Name:</label>
-              </td>
-              <td style={{width:"150px" }}>
-                {/* <input
-                  type="text"
-                  placeholder="Trayee Das"
-                  style={{ width: "100%" }}
-                /> */}
-                <p>Trayee Das</p>
-              </td>
-              <td style={{ }}>
-                <label>Title:</label>
-              </td>
-              <td style={{width:"200px"}}>
-                {/* <input
-                  type="text"
-                  placeholder="Water Problem"
-                  style={{ width: "100%", height:"100px", padding: "2px" }}
-                /> */}
-                <p>Water Problem</p>
-              </td>
-            
-            
-              {/* <td style={{ padding: "10px" }}> */}
-              <td>
-                <label>Description:</label>
-              </td>
-              <td style={{ padding: "10px" }}>
-                <textarea
-                  placeholder="Many students are facing frequent mineral water disruptions in the hall, causing serious health issue."
-                  rows="4"
-                  style={{ width: "100%", height: "150px",  padding: "8px" }}
-                ></textarea>
-              </td>
-            </tr>
-            <tr>
-              <td colSpan={2} style={{ color:"blue",  textAlign: "center", padding: "10px" }}>
-                Deadline: 21/2/2025
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-      </div>
-      <div style={{padding:"20px"}}>
-      <form> 
-        <table>
-          <tbody>
-          <tr>
-              <td style={{ }}>
-                <label>Student Name:</label>
-              </td>
-              <td style={{width:"150px" }}>
-                {/* <input
-                  type="text"
-                  placeholder="Arupa Barua"
-                  style={{ width: "100%" }}
-                /> */}
-                <p >Arupa Barua </p>
-              </td>
-              <td style={{ }}>
-                <label>Title:</label>
-              </td>
-              <td style={{width:"200px"}}>
-                {/* <input
-                  type="text"
-                  placeholder="Dining Issue"
-                  style={{ width: "100%", height:"100px", padding: "2px" }}
-                /> */}
-                <p> Dining Issues</p>
-              </td>
+    <div style={{ width: "100%", height: "100vh" }}>
+      <h1>Complaint Details</h1>
 
-              {/* <td style={{ padding: "10px" }}> */}
-              <td>
-                <label>Description:</label>
-              </td>
-              <td style={{ padding: "10px" }}>
-              
-                <textarea
-                  placeholder="Dining meal is not nutrisious . Cost of food item is too much in canteen."
-                  rows="4"
-                  style={{ width: "100%", height: "150px",  padding: "8px" }}
-                ></textarea>
+      {complaints.length > 0 ? (
+        complaints.map((complaint) => (
+          <div key={complaint._id} className="bg-gray-100 p-10 m-10 rounded-lg shadow-md min-h-[250px] border border-blue-500">
+            <div className="mb-6">
+              <h2 className="text-center text-2xl font-bold text-gray-800">{complaint.title}</h2>
+            </div>
+
+            <div className="grid grid-cols-[30%_60%] gap-8 pl-1.5">
+              <div className="space-y-6 p-6 ">
+                <p className="text-xl"><span className="font-bold">Name:</span> {complaint.userName}</p>
+                <p className="text-xl"><span className="font-bold">ID:</span> {complaint.id}</p>
                 
-              </td>
-            </tr>
-            <tr>
-              
-              <td colSpan={2} style={{ color:"blue",  textAlign: "center", padding: "10px" }}>
-                Deadline: 22/2/2025
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-      </div>
+                {/* Approve Button */}
+                <div className="mt-4">
+                  <button 
+                    onClick={() => handleApproveClick(complaint)}
+                    className="bg-green-600 text-white px-6 py-3 rounded hover:bg-green-700"
+                  >
+                    Done
+                  </button>
+                </div>
+              </div>
 
+              <div className="p-6 bg-white shadow rounded-lg    pl-1.5">
+                <p className="text-xl pl-3"><span className="font-bold">Description:</span> {complaint.description}</p>
+              </div>
+            </div>
+            <div className="min-h-[80px]">
+              <p className="text-xl shadow rounded-lg"><span className="font-bold">Message:</span> {complaint.message}</p>
+            </div>
+            
+          </div>
+          
+        ))
+      ) : (
+        <p>No complaints available.</p>
+      )}
+
+      {/* Approval Modal with Blurred Background */}
 
     </div>
   );
 }
 
-export default ApprovedComplaints;
+export default StudentComplaints;
