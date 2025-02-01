@@ -5,11 +5,13 @@ import '../Styles/Login.css'
 import axios from "axios";
 import { enqueueSnackbar } from "notistack";
 
-
 const LoginSignUP = () => {
     const [action, setAction] = useState("Login");
     const [name, setName] = useState("")
-    const [email,setEmail] = useState('')
+    const [email,setEmail] = useState('')   
+    const [role, setRole] = useState("")
+    const [id,setId] = useState('')
+
     const [ password , setPassword] = useState('')
     const navigate = useNavigate()
     
@@ -23,10 +25,13 @@ const LoginSignUP = () => {
                 localStorage.setItem("userName", response.data.user._name);
                 localStorage.setItem("userId", response.data.user._id);
                 localStorage.setItem("userRole", response.data.user._role);
-                enqueueSnackbar("Login successful", {variant: "success"})
-                if(response.data.user._role === "student") {
+                if(response.data.user._active == false) {
+                    enqueueSnackbar("Sign Up request in pending")
+                }else if(response.data.user._role === "student") {
+                    enqueueSnackbar("Login successful", {variant: "success"})
                     navigate("/student-dashboard")
                 }else {
+                    enqueueSnackbar("Login successful", {variant: "success"})
                     navigate("/manager-dashboard")
                 }
                 
@@ -34,9 +39,11 @@ const LoginSignUP = () => {
                 const res = await axios.post("http://localhost:3000/api/auth/Signup", {
                     name,
                     email,
-                    password
+                    password,
+                    role,
+                    id
                 })
-                enqueueSnackbar("Signup successful")
+                enqueueSnackbar("Request for Signup Successful")
             }
      
        
@@ -54,13 +61,35 @@ const LoginSignUP = () => {
         <form onSubmit={handleSubmit} className="loginform">
         <div className="inputs">
             {action!=="Login" &&
-            <div className="input">
+            <div>
+                <div className="input">
                 {/* <img src={user_icon} alt=""  /> */}
-                <input 
-                    type="text" placeholder="Name"
-                    onChange={(e) => setName(e.target.value)}
-                />
-            </div>}
+                    <input 
+                        type="text" placeholder="Name"
+                        onChange={(e) => setName(e.target.value)}
+                    />            
+                </div>
+                <div className="h-5" />
+                <div className="input">
+
+                {/* <img src={user_icon} alt=""  /> */}
+                    <input 
+                        type="text" placeholder="Id"
+                        onChange={(e) => setId(e.target.value)}
+                    />            
+                </div>
+                <div className="h-5" />
+                <div className="input">
+                {/* <img src={user_icon} alt=""  /> */}
+                    <input 
+                        type="text" placeholder="Role"
+                        onChange={(e) => setRole(e.target.value)}
+                    />            
+                </div>
+
+            </div>
+            
+            }
             <div className="input">
                 {/* <img src={email_icon} alt="" className="" /> */}
                 <input 
@@ -98,14 +127,3 @@ const LoginSignUP = () => {
 }
 
 export default LoginSignUP
-
-
-
-// function Login(){
-//     return(
-//         <p>Login</p>
-
-//     )
-// }
-
-// export default Login

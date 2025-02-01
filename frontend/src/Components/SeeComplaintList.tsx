@@ -64,6 +64,7 @@ function StudentComplaints() {
 
       {complaints.length > 0 ? (
         complaints.map((complaint) => (
+          <div>
           <div key={complaint._id} className="bg-gray-100 p-10 m-10 rounded-lg shadow-md min-h-[250px] border border-blue-500">
             <div className="min-h-[60px] mb-6">
               <h2 className="text-center text-2xl font-bold text-gray-800">{complaint.title}</h2>
@@ -86,12 +87,15 @@ function StudentComplaints() {
                   </button>
                 </div>
               </div>
-
-              <div className="p-6 bg-white shadow rounded-lg min-h-[200px]">
-                <p className="text-xl"><span className="font-bold">Description:</span> {complaint.description}</p>
+              <div>
+                <div className="p-6 bg-white shadow rounded-lg min-h-[200px]">
+                  <p className="text-xl"><span className="font-bold">Description:</span> {complaint.description}</p> 
+                </div>
+                <div className="h-3"></div>
               </div>
             </div>
-            <div className="h-5"></div>
+          </div>
+          <div className="h-6"></div>
           </div>
         ))
       ) : (

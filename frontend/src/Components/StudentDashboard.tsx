@@ -28,9 +28,10 @@ function StudentDashboard() {
         <div className="user-info">
           <span style={{paddingRight:"15px"}}>  {userName}!</span>
           <button className="logout-btn" onClick={() => {
-            localStorage.removeItem("userName"); // Clear stored user info
-            navigate("/home");
-            
+            localStorage.removeItem("userName");
+            localStorage.removeItem("userId");
+            localStorage.removeItem("userRole");
+            navigate("/home");            
           }}>
             Logout
           </button>

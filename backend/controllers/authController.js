@@ -19,7 +19,7 @@ export const login = async(req,res) => {
         )
         
 
-        res.status(200).json({success:true,token, user: {_id: user.id,_role: user.role,_name:user.name}});
+        res.status(200).json({success:true,token, user: {_id: user.id,_role: user.role,_name:user.name,_active:user.active}});
     }catch(error){
 
     }

@@ -32,6 +32,7 @@ function StudentComplaints() {
 
       {complaints.length > 0 ? (
         complaints.map((complaint) => (
+          <div>
           <div key={complaint._id} className="bg-gray-100 p-10 m-10 rounded-lg shadow-md min-h-[220px] border border-blue-500">
             <div className="h-2"/>
             <div className="mb-6">
@@ -43,7 +44,7 @@ function StudentComplaints() {
                 <tr className="bg-gray-200">
                   <th className="text-center border border-gray-300 px-4 py-2">Name</th>
                   <th className="text-center border border-gray-300 px-4 py-2 ">ID</th>
-                  <th className="text-center border border-gray-300 px-4 py-2  w-[60%]">Description</th>
+                  <th className="text-center border border-gray-300 px-4 py-2  w-[60%]">Requirements</th>
                 </tr>
               </thead>
               <tbody>
@@ -65,9 +66,10 @@ function StudentComplaints() {
                 Mark as Done
               </button>
             </div>     
-            <div className="h-8"/>     
-          </div>  
-                 
+            <div className="h-5"/>     
+          </div> 
+          <div className="h-6" /> 
+          </div>        
         ))
       ) : (
         <p>No complaints available.</p>

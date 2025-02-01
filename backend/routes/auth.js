@@ -10,7 +10,8 @@ const router = express.Router()
 router.post('/Login',login)
 router.post('/Signup', async (req, res) => {
     try {
-        const { name, userId, email, password } = req.body;
+        const { name, id, role, email, password } = req.body;
+        console.log()
         let existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ message: "User already exists" });
@@ -21,10 +22,10 @@ router.post('/Signup', async (req, res) => {
 
         const newUser = new User({
             name,
-            userId,
+            id,
             email,
-            password: hashedPassword,
-            role: "student",
+            password,
+            role,
             active: false
         });
         await newUser.save();
