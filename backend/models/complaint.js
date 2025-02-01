@@ -12,6 +12,13 @@ const complaintScheme = new mongoose.Schema({
     message: {type: String, default: "No action taken still" },
     done: {type: String, default: "false", enum: [ "true", "false"]},
     status: {type: String, required: true, enum: ["pending", "inprogress", "resolved"]},
+    opinions: [
+        {
+            userName: { type: String, required: true },
+            userId: { type: Number, required: true },
+            opinion: { type: String, required: true },
+        }
+    ]
 })
 
 const complaintModel = mongoose.model("Complaint", complaintScheme)

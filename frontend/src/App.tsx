@@ -16,6 +16,7 @@ import StudentDashboard from './Components/StudentDashboard';
 import ComplaintManager from './Components/ComplaintManager';
 import StudentComplaints from './Components/SeeComplaintList';
 import ApprovedComplaints from './Components/ApprovedComplaint';
+import WorkInProgress from './Components/WorkInProgress';
 import { SnackbarProvider } from 'notistack';
 
 
@@ -34,6 +35,7 @@ function App() {
         <Route path="/student-dashboard" element={<StudentDashboard />} >
           <Route index element={<AddComplaint />} />
           <Route path="add-complaint" element={<AddComplaint />} />
+          <Route path="in-progress" element={<WorkInProgress/>} />
           <Route path="previous-complaints" element={<PreviousComplaints />} />
           <Route path="profile" element={<Profile />} />
          

@@ -37,7 +37,6 @@ router.post('/Signup', async (req, res) => {
 });
 
 router.post('/Complaint' , async(req,res) => {
-    console.log("entered")
     try{
         const {userName,userId,title,manager,description,status} = req.body;
         if (!req.body.userName || !req.body.title || !req.body.manager || !req.body.description) {
@@ -53,7 +52,14 @@ router.post('/Complaint' , async(req,res) => {
             description,
             status,
             id: userId,
-            c_id
+            c_id,
+            opinions: [
+              {
+                  userName: userName,  // Default opinion added
+                  userId: userId,
+                  opinion: description
+              }
+          ]
         });
         await newComplaint.save();
         res.status(200).json({ message: "Complaint submitted successfully" });
@@ -118,16 +124,49 @@ router.post('/ApproveComplaint', async (req, res) => {
 router.get("/Approved/:role", async (req, res) => {
   try {
     const role = req.params.role;
-    const complaints = await Complaint.find({manager:role, status: 'inprogress' });
-    if (!complaints.length) {
-      console.log("No complaints")
-      return res.status(404).json({ success: false, message: "No complaints found for this user." });
-      
-    }
-    res.status(200).json(complaints);
+    if(role==="student") {
+       const complaints = await Complaint.find({status: 'inprogress' });
+       console.log(complaints)
+       res.status(200).json(complaints);
+    }else {
+      const complaints = await Complaint.find({manager:role, status: 'inprogress' });
+      if (!complaints.length) {
+        console.log("No complaints")
+        return res.status(404).json({ success: false, message: "No complaints found for this user." });
+        
+      }
+      res.status(200).json(complaints);
+    } 
+    
+  }catch (error) {
+      console.error("Error fetching complaints:", error);
+      res.status(500).json({ success: false, error: "Server error" });
+
+  }
+
+   
+});
+
+router.post('/AddOpinion', async (req, res) => {
+  try {
+      const { c_id , actionPlan , userName , userId } = req.body;
+      const complaint = await Complaint.findOne({ c_id });
+      console.log(c_id)
+      if (!complaint) {
+          return res.status(404).json({ success: false, message: "Complaint not found" });
+      }
+      complaint.opinions.push({
+        userName: userName,
+        userId: userId,
+        opinion: actionPlan
+      });
+      await complaint.save();
+
+      res.status(200).json({ success: true, message: "Opinion added successfully", complaint });
   } catch (error) {
-    console.error("Error fetching complaints:", error);
-    res.status(500).json({ success: false, error: "Server error" });
+      res.status(500).json({ message: "Internal server error", error: error.message });
+      console.log(error)
   }
 });
+
 export default router

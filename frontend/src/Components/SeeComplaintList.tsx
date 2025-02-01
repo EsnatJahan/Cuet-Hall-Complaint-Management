@@ -70,10 +70,12 @@ function StudentComplaints() {
             </div>
 
             <div className="grid grid-cols-[30%_60%] gap-8">
-              <div className="space-y-6 p-6 min-h-[250px]">
+              <div className="space-y-6 p-6 min-h-[200px]">
+                <div className="h-4"/>
                 <p className="text-xl"><span className="font-bold">Name:</span> {complaint.userName}</p>
+                <div className="h-2"/>
                 <p className="text-xl"><span className="font-bold">ID:</span> {complaint.id}</p>
-                
+                <div className="h-2"/>
                 {/* Approve Button */}
                 <div className="mt-4">
                   <button 
@@ -85,7 +87,7 @@ function StudentComplaints() {
                 </div>
               </div>
 
-              <div className="p-6 bg-white shadow rounded-lg min-h-[250px]">
+              <div className="p-6 bg-white shadow rounded-lg min-h-[200px]">
                 <p className="text-xl"><span className="font-bold">Description:</span> {complaint.description}</p>
               </div>
             </div>
