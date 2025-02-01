@@ -122,10 +122,10 @@ function WorkInProgress() {
       {showModal && selectedComplaint && (
         <div className="fixed inset-0 flex items-center justify-center bg-transparent backdrop-blur-md">
           <div className="bg-white p-10 rounded-lg shadow-lg w-[600px] min-h-[300px] border border-gray-300">
-            <h2 className="text-2xl font-bold mb-4 text-center">Approval Action Plan</h2>
+            <h2 className="text-2xl font-bold mb-4 text-center">Add Student Requirements</h2>
             <textarea
               className="w-full p-3 border border-gray-300 rounded text-lg min-h-[150px]"
-              placeholder="Enter action plan details..."
+              placeholder="Enter Requirement..."
               value={actionPlan}
               onChange={(e) => setActionPlan(e.target.value)}
             />
@@ -137,7 +137,7 @@ function WorkInProgress() {
                 className="bg-blue-600 text-white px-6 py-3 rounded hover:bg-blue-700" 
                 onClick={() => handleAddOpinion(selectedComplaint.c_id)} // Pass c_id
               >
-                Confirm Approval
+                Add
               </button>
             </div>
           </div>
