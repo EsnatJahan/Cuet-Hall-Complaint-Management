@@ -47,14 +47,16 @@ function StudentComplaints() {
                 </tr>
               </thead>
               <tbody>
-                <tr className="bg-white">
-                  <td className="border border-gray-300 px-4 py-2">{complaint.userName}</td>
-                  <td className="border border-gray-300 px-4 py-2">{complaint.id}</td>
-                  <td className="border border-gray-300 px-4 py-2">{complaint.description}</td>
-                </tr>
+                {complaint.opinions.map((opinion, index) => (
+                    <tr key={index} className="bg-white h-auto">
+                      <td className="border border-gray-300 px-4 py-2">{opinion.userName}</td>
+                      <td className="border border-gray-300 px-4 py-2">{opinion.userId}</td>
+                      <td className="border border-gray-300 px-4 py-2">{opinion.opinion}</td>
+                    </tr>
+                ))}
               </tbody>
             </table>
-            <div className="h-2"/>
+            <div className="h-5"/>
             <div className="mt-2 flex justify-center">
               <button 
                 onClick={() => handleApproveClick(complaint)}
@@ -62,7 +64,8 @@ function StudentComplaints() {
               >
                 Mark as Done
               </button>
-            </div>          
+            </div>     
+            <div className="h-8"/>     
           </div>  
                  
         ))

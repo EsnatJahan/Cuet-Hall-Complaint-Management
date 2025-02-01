@@ -57,7 +57,7 @@ function AddComplaint() {
 
       if (response.status === 200) {
         enqueueSnackbar("Complaint submitted successfully!", { variant: "success" });
-        navigate("/dashboard"); // Navigate to dashboard
+        navigate("/add-complaint"); 
       } else {
         enqueueSnackbar("Failed to submit complaint. Please try again.", { variant: "error" });
       }

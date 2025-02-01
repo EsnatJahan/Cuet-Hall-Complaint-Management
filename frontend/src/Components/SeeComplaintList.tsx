@@ -91,6 +91,7 @@ function StudentComplaints() {
                 <p className="text-xl"><span className="font-bold">Description:</span> {complaint.description}</p>
               </div>
             </div>
+            <div className="h-5"></div>
           </div>
         ))
       ) : (

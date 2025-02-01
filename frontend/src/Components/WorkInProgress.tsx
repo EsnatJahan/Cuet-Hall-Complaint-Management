@@ -72,7 +72,7 @@ function WorkInProgress() {
   };
 
   return (
-    <div style={{ width: "100%", height: "100vh" }}>
+    <div style={{ width: "100%", height: "89vh" }}>
       <h1>Complaint Details</h1>
 
       {complaints.length > 0 ? (
