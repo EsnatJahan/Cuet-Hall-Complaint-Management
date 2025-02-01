@@ -21,19 +21,16 @@ function ComplaintManager(){
 
         <div className="dashboard-container">
           {/* Sidebar */}
-          <nav className="w-full h-10 bg-gradient-to-r from-gray-800 to-gray-900 text-white py-10 px-8 flex justify-between items-center shadow-lg">
-            <h2 className="text-2xl font-semibold tracking-wide">Manager Dashboard</h2>
-            <div className="flex items-center space-x-6">
-              <span className="text-lg font-medium">{userName}!</span>
-              <button 
-                className="bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-lg transition duration-200"
-                onClick={() => {
-                  localStorage.removeItem("userName");
-                  localStorage.removeItem("userId");
-                  localStorage.removeItem("userRole");
-                  navigate("/home");            
-                }}
-              >
+          <nav className="navbar">
+            <h1 className="navbar-title">Manager Dashboard</h1>
+            <div className="user-info">
+              <span style={{paddingRight:"15px"}}>  {userName}!</span>
+              <button className="logout-btn" onClick={() => {
+                localStorage.removeItem("userName");
+                localStorage.removeItem("userId");
+                localStorage.removeItem("userRole");
+                navigate("/home");            
+              }}>
                 Logout
               </button>
             </div>

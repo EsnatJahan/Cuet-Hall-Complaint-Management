@@ -24,9 +24,9 @@ function StudentDashboard() {
     <div className="dashboard-container">
       {/* Navbar */}
       <nav className="navbar">
-        <h2 className="navbar-title">Student Dashboard</h2>
+        <h1 className="navbar-title">Student Dashboard</h1>
         <div className="user-info">
-          <span style={{paddingRight:"15px"}}>  {userName}!</span>
+          <span style={{paddingRight:"15px "}}>  {userName}</span>
           <button className="logout-btn" onClick={() => {
             localStorage.removeItem("userName");
             localStorage.removeItem("userId");
@@ -43,7 +43,7 @@ function StudentDashboard() {
         <aside className="sidebar">
           <ul>
             <li>
-              <Link to="add-complaint">Add Complaints</Link>
+              <Link to="add-complaint" >Add Complaints</Link>
             </li>
             <li>
               <Link to="previous-complaints">My Complaints</Link>

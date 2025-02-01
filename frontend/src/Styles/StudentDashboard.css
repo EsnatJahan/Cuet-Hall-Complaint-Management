@@ -13,15 +13,15 @@
   .sidebar {
     position: sticky;
     width: 20%;
-    background-color: rgb(160, 131, 109);
+    /* background-color: rgb(160, 131, 109); */
+    background-color: #ad9494;
     color: white;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   }
   
   .sidebar h2 {
-    font-size: 1.8rem;
-    
+    font-size: 3rem;
     margin-bottom: 20px;
   }
   
@@ -31,11 +31,12 @@
   }
   
   .sidebar ul li {
-    margin: 15px 0;
+    margin: 25px 0;
+    
   }
   
   .sidebar ul li a {
-    color: white;
+    color: rgb(101, 75, 75);
     text-decoration: none;
     font-size: 1.1rem;
   }
@@ -63,7 +64,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #4a5568;
+  background-color: #d6c0c0;
   color: white;
   padding: 15px 20px;
   font-size: 18px;
@@ -86,7 +87,7 @@
 /* Sidebar */
 .sidebar {
   width: 250px;
-  background-color: #2d3748;
+  /* background-color: #2d3748; */
   color: white;
   height: 100vh;
   position: fixed;
