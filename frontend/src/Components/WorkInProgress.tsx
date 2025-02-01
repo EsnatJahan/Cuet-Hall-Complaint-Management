@@ -77,6 +77,7 @@ function WorkInProgress() {
 
       {complaints.length > 0 ? (
         complaints.map((complaint) => (
+          <div>
           <div key={complaint.c_id} className="bg-gray-100 p-10 m-10 rounded-lg shadow-md min-h-[220px] border border-blue-500">
             <div className="h-2"/>
             <div className="mb-6">
@@ -111,6 +112,8 @@ function WorkInProgress() {
               </button>
             </div>  
             <div className="h-4"/>        
+          </div>
+            <div className="h-6"/>
           </div>  
                  
         ))
