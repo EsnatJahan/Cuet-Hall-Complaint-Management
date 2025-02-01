@@ -45,7 +45,7 @@ function StudentDashboard() {
               <Link to="add-complaint">Add Complaints</Link>
             </li>
             <li>
-              <Link to="previous-complaints">Show Previous Complaints</Link>
+              <Link to="previous-complaints">My Complaints</Link>
             </li>
             <li>
               <Link to="in-progress">Work In Progress</Link>
