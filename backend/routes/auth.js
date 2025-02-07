@@ -37,6 +37,7 @@ router.post('/Signup', async (req, res) => {
     }
 });
 
+
 router.post('/Complaint' , async(req,res) => {
     try{
         const {userName,userId,title,manager,description,status} = req.body;
@@ -70,6 +71,35 @@ router.post('/Complaint' , async(req,res) => {
     }
     
 })
+
+router.get("/signup-requests", async (req, res) => {
+  try {
+    const requests = await User.find({ active: false });
+    return res.json(requests);
+  } catch (error) {
+    console.error("Error fetching sign-up requests:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
+
+router.put("/update-signup-requests/:id", async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    user.active = true;
+    await user.save();
+
+    return res.json({ message: "User approved successfully", user });
+  } catch (error) {
+    console.error("Error updating user:", error);
+    res.status(500).json({ message: "Server error" });
+  }
+});
 
 router.get("/PrevComplaints/:id", async (req, res) => {
     try {

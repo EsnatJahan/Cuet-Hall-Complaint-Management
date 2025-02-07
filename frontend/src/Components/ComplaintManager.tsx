@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Link, Navigate, useNavigate } f
 import AddComplaint from "./AddComplaint.tsx";
 import PreviousComplaints from "./PreviousComplaints.tsx";
 import Profile from "./Profile.tsx";
+import SignUpRequests from "./SignUpRequests.tsx";
 import { Outlet } from "react-router-dom";
 import "../Styles/StudentDashboard.css"; 
 
@@ -46,7 +47,7 @@ function ComplaintManager(){
                 <Link to="approved-complaints">Approved Complaints</Link>
               </li>
               <li>
-                <Link to="previous-complaints">New Student Requests</Link>
+                <Link to="sign-up-requests">New User Requests</Link>
               </li>
               <li>
                 <Link to="profile">Profile</Link>
