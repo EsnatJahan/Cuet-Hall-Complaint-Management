@@ -19,6 +19,7 @@ import ApprovedComplaints from './Components/ApprovedComplaint';
 import WorkInProgress from './Components/WorkInProgress';
 import SignUpRequests from './Components/SignUpRequests';
 import { SnackbarProvider } from 'notistack';
+import ResolvedComplaints from './Components/ResolvedComplaints';
 
 
 function App() {
@@ -45,9 +46,9 @@ function App() {
           <Route index element={<StudentComplaints  />} />
           <Route path="student-complaint" element={<StudentComplaints />} />
           <Route path="approved-complaints" element={<ApprovedComplaints />} />
+          <Route path="resolved-complaints" element={<ResolvedComplaints />} />
           <Route path="sign-up-requests" element={<SignUpRequests/>} />
           <Route path="profile" element={<Profile />} />
-         
         </Route>
         
 

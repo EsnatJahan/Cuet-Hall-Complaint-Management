@@ -32,11 +32,7 @@ function SignUpRequests() {
   const approveRequest = async (id: string) => {
     try {
       await axios.put(`http://localhost:3000/api/auth/update-signup-requests/${id}`, { active: true });
-
-      // Remove the approved user from the UI
       setRequests((prevRequests) => prevRequests.filter((req) => req._id !== id));
-
-      // Close the modal
       setSelectedRequest(null);
     } catch (error) {
       console.error("Error approving request", error);
@@ -97,8 +93,6 @@ function SignUpRequests() {
                 No
                 </button>
             </div>
-
-
           </div>
         </div>
       )}

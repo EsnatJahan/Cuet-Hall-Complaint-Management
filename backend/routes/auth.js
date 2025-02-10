@@ -174,8 +174,6 @@ router.get("/Approved/:role", async (req, res) => {
       res.status(500).json({ success: false, error: "Server error" });
 
   }
-
-   
 });
 
 router.post('/AddOpinion', async (req, res) => {
@@ -199,5 +197,31 @@ router.post('/AddOpinion', async (req, res) => {
       console.log(error)
   }
 });
+
+router.put('/mark-complaint/:id', async(req, res) =>{
+  try{
+    const {id} = req.params;
+    const complaint = await Complaint.findById(id)
+    if(!complaint){
+      return res.status(404).json({message: "Complaint not found"})
+    }
+    complaint.status = "resolved"
+    complaint.done = new Date()
+    await complaint.save()
+    return res.json({message: "Complaint is marked as done successfully", complaint})
+  }catch(error){
+    console.error("Error marking complaint as done", error)
+    res.status(500).json({message: "Error in marking complaint as done"})
+  }
+});
+
+router.get("/resolved-complaints", async (req, res) =>{
+  try{
+    const complaints = await Complaint.find({ status: "resolved" })
+    res.status(200).json(complaints)
+  }catch (error) {
+    res.status(500).json({ message: "Internal Server Error", error: error.message });
+  }
+})
 
 export default router

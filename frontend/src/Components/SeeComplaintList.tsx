@@ -51,7 +51,7 @@ function StudentComplaints() {
       // Remove the approved complaint from UI
       setComplaints((prev) => prev.filter((c) => c.c_id !== c_id));
 
-      alert(response.data.message); // Show success message
+      
     } catch (error) {
       console.error("Error approving complaint:", error);
       alert("Failed to approve complaint. Please try again.");
@@ -60,14 +60,14 @@ function StudentComplaints() {
 
   return (
     <div style={{ width: "100%", height: "100vh" }}>
-      <h1>Complaint Details</h1>
+      <h1 style={{marginTop: "10px"}}>Complaint Details</h1>
 
       {complaints.length > 0 ? (
         complaints.map((complaint) => (
           <div>
           <div key={complaint._id} className="bg-gray-100 p-10 m-10 rounded-lg shadow-md min-h-[250px] border border-blue-500">
-            <div className="min-h-[60px] mb-6">
-              <h2 className="text-center text-2xl font-bold text-gray-800">{complaint.title}</h2>
+            <div className="min-h-[40px] mb-6" style={{marginTop: "10px"}}>
+              <h2 className="text-center text-2xl font-bold text-gray-800" style={{color: "rgb(101, 75, 75)"}}>{complaint.title}</h2>
             </div>
 
             <div className="grid grid-cols-[30%_60%] gap-8">
@@ -88,8 +88,8 @@ function StudentComplaints() {
                 </div>
               </div>
               <div>
-                <div className="p-6 bg-white shadow rounded-lg min-h-[200px]">
-                  <p className="text-xl"><span className="font-bold">Description:</span> {complaint.description}</p> 
+                <div className="p-6 bg-white shadow rounded-lg min-h-[200px]" style={{padding: "10px", marginBottom: "10px"}}>
+                  <p className="text-xl text-justify"><span className="font-bold">Description:</span> {complaint.description}</p> 
                 </div>
                 <div className="h-3"></div>
               </div>
@@ -105,15 +105,15 @@ function StudentComplaints() {
       {/* Approval Modal with Blurred Background */}
       {showModal && selectedComplaint && (
         <div className="fixed inset-0 flex items-center justify-center bg-transparent backdrop-blur-md">
-          <div className="bg-white p-10 rounded-lg shadow-lg w-[600px] min-h-[300px] border border-gray-300">
-            <h2 className="text-2xl font-bold mb-4 text-center">Approval Action Plan</h2>
+          <div className="bg-white p-10 rounded-lg shadow-lg w-[600px] min-h-[300px] border border-gray-300" style={{padding: "15px"}}>
+            <h2 className="text-2xl font-bold mb-4 text-center" style={{marginBottom: "5px"}}>Approval Action Plan</h2>
             <textarea
               className="w-full p-3 border border-gray-300 rounded text-lg min-h-[150px]"
               placeholder="Enter action plan details..."
               value={actionPlan}
               onChange={(e) => setActionPlan(e.target.value)}
             />
-            <div className="flex justify-end mt-6">
+            <div className="flex justify-end mt-6" style={{gap: "10px", marginTop: "5px"}}>
               <button className="bg-gray-500 text-white px-6 py-3 rounded mr-3" onClick={() => setShowModal(false)}>
                 Cancel
               </button>

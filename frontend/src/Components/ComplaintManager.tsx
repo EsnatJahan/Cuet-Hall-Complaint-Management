@@ -4,6 +4,7 @@ import AddComplaint from "./AddComplaint.tsx";
 import PreviousComplaints from "./PreviousComplaints.tsx";
 import Profile from "./Profile.tsx";
 import SignUpRequests from "./SignUpRequests.tsx";
+import ResolvedComplaints from "./ResolvedComplaints.tsx";
 import { Outlet } from "react-router-dom";
 import "../Styles/StudentDashboard.css"; 
 
@@ -45,6 +46,9 @@ function ComplaintManager(){
               </li>
               <li>
                 <Link to="approved-complaints">Approved Complaints</Link>
+              </li>
+              <li>
+                <Link to="resolved-complaints">Resolved Complaints</Link>
               </li>
               <li>
                 <Link to="sign-up-requests">New User Requests</Link>
