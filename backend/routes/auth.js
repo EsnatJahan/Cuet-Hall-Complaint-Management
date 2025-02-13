@@ -152,6 +152,22 @@ router.post('/ApproveComplaint', async (req, res) => {
   }
 });
 
+router.post('/DeclineComplaint', async (req, res) => {
+  try {
+      const { c_id} = req.body;
+      console.log("hello")
+      const updatedComplaint = await Complaint.findOneAndUpdate(
+        { c_id },  
+        { status: "declined" },
+        { new: true } 
+      );
+      res.status(200).json({ message: "Complaint submitted successfully" });
+  } catch (error) {
+      res.status(500).json({ message: "Internal server error", error: error.message });
+      console.log(error)
+  }
+});
+
 router.get("/Approved/:role", async (req, res) => {
   try {
     const role = req.params.role;

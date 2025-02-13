@@ -11,7 +11,7 @@ const complaintScheme = new mongoose.Schema({
     description: {type: String, required: true},
     message: {type: String, default: "No action taken still" },
     done: {type: Date, default: null},
-    status: {type: String, required: true, enum: ["pending", "inprogress", "resolved"]},
+    status: {type: String, required: true, enum: ["pending", "inprogress", "resolved" , "declined" ]},
     opinions: [
         {
             userName: { type: String, required: true },
