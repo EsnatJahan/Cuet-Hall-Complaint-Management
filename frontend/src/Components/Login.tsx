@@ -55,7 +55,7 @@ const LoginSignUP = () => {
     <div className="container-bg">
     <div className='container'>
         <div className="header">
-            <div className="text">Taposhi Rabeya Hall</div>
+            <div className="text">Tapashi Rabeya Hall</div>
             <div className="underline"></div>
         </div>
         <form onSubmit={handleSubmit} className="loginform">
