@@ -82,7 +82,6 @@ router.get("/signup-requests", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
-
 router.put("/update-signup-requests/:id", async (req, res) => {
   try {
     const { id } = req.params;
