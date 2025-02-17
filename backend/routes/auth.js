@@ -41,6 +41,7 @@ router.post('/Signup', async (req, res) => {
 router.post('/Complaint' , async(req,res) => {
     try{
         const {userName,userId,title,manager,description,status} = req.body;
+        console.log(req.body)
         if (!req.body.userName || !req.body.title || !req.body.manager || !req.body.description) {
             return res.status(400).json({ success: false, error: "All fields are required" });
         }
